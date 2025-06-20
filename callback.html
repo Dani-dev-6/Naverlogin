@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>네이버 로그인 콜백</title>
+</head>
+<body>
+  <h1>로그인 중...</h1>
+  <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+  <script>
+    const naverLogin = new naver.LoginWithNaverId({ clientId: "YOUR_CLIENT_ID", callbackUrl: "http://localhost:5500/callback.html", isPopup: false });
+    naverLogin.init();
+
+    window.onload = function () {
+      naverLogin.getLoginStatus(function (status) {
+        if (status) {
+          const name = naverLogin.user.getName();
+          const email = naverLogin.user.getEmail();
+          document.body.innerHTML = `<h2>${name}님, 로그인 성공!</h2><p>이메일: ${email}</p>`;
+        } else {
+          document.body.innerHTML = "<h2>로그인 실패</h2>";
+        }
+      });
+    };
+  </script>
+</body>
+</html>
