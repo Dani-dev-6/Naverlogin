@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>네이버 로그인</title>
+  <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" type="text/javascript"></script>
+</head>
+<body>
+  <!-- 로그인 버튼 위치 -->
+  <div id="naverIdLogin"></div>
+
+  <script>
+    const naverLogin = new naver.LoginWithNaverId({
+      clientId: "YOUR_CLIENT_ID", // 네이버 개발자센터에서 발급받은 Client ID
+      callbackUrl: "http://localhost:5500/callback.html", // 로그인 후 리디렉션될 주소
+      isPopup: false, // 팝업 방식 여부 (false: 리디렉션 방식)
+      loginButton: { color: "green", type: 3, height: 45 } // 버튼 스타일
+    });
+
+    naverLogin.init();
+  </script>
+</body>
+</html>
